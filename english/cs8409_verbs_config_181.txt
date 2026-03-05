@@ -1,0 +1,190 @@
+# Cirrus Logic CS8409 (iMac 18,1) PEQ + DSP + GAIN Fix
+# Adapted for iMac 18,1 (subsystem ID: 0x106b0e00)
+
+[codec]
+0x106b0e00 0x106b0e00 0
+
+# ====================================================================
+# A. DSP and Post-Processing FIX (For spatial sound and width)
+# ====================================================================
+# These verbs activate post-processing on the main DAC (Digital-to-Analog Converter)
+# to restore virtualizer/stereo-enhancer effect.
+nid = 0x17
+verb = 0x700
+param = 0x82
+
+nid = 0x17
+verb = 0x701
+param = 0x0
+
+nid = 0x17
+verb = 0xf02
+param = 0x01
+
+nid = 0x17
+verb = 0xf00
+param = 0x00
+
+# ====================================================================
+# D. VOLUME/GAIN FIX (Maximize volume)
+# ====================================================================
+# Amplify output Pin Complex (0x03) - Critical for amplifying entire output
+nid = 0x03
+verb = 0x700
+param = 0x80 # Set Pin to Vout
+
+nid = 0x03
+verb = 0x300
+param = 0x00 # Set max GAIN on Pin Out Amp (Amp Index 0)
+
+# Unmute on Mixer/DAC (0x11)
+nid = 0x11
+verb = 0xf01
+param = 0x00 # Unmute
+
+# ====================================================================
+# B. PEQ Coefficients - Woofer (0x14)
+# ====================================================================
+# WOOFER (Node 0x14): SET_PROC_COEF 0x48 followed by all coefficients
+nid = 0x14
+verb = 0x400
+param = 0xf48 
+# Following are the actual coefficients for Woofer:
+verb = 0x400
+param = 0x0113
+verb = 0x400
+param = 0x0544
+verb = 0x400
+param = 0x058e
+verb = 0x400
+param = 0x0527
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x057e
+verb = 0x400
+param = 0x0526
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0531
+verb = 0x400
+param = 0x056b
+verb = 0x400
+param = 0x0523
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0544
+verb = 0x400
+param = 0x058e
+verb = 0x400
+param = 0x0527
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x057e
+verb = 0x400
+param = 0x0526
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0531
+verb = 0x400
+param = 0x056b
+verb = 0x400
+param = 0x0523
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0536
+verb = 0x400
+param = 0x055c
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0500
+
+
+# ====================================================================
+# C. PEQ Coefficients - Tweeter (0x15)
+# ====================================================================
+# TWEETER (Node 0x15): SET_PROC_COEF 0x48 followed by all coefficients
+nid = 0x15
+verb = 0x400
+param = 0xf48 
+# Following are the actual coefficients for Tweeter:
+verb = 0x400
+param = 0x0113
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x057e
+verb = 0x400
+param = 0x0526
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0531
+verb = 0x400
+param = 0x056b
+verb = 0x400
+param = 0x0523
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0544
+verb = 0x400
+param = 0x058e
+verb = 0x400
+param = 0x0527
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x057e
+verb = 0x400
+param = 0x0526
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0531
+verb = 0x400
+param = 0x056b
+verb = 0x400
+param = 0x0523
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0544
+verb = 0x400
+param = 0x058e
+verb = 0x400
+param = 0x0527
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0544
+verb = 0x400
+param = 0x058e
+verb = 0x400
+param = 0x0527
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0522
+verb = 0x400
+param = 0x057e
+verb = 0x400
+param = 0x0526
+verb = 0x400
+param = 0x040f
+verb = 0x400
+param = 0x0500
